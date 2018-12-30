@@ -34,15 +34,16 @@ mixer.music.load('drum.mp3')                    # 設定背景音樂
 mixer.music.play()
 
 pygame.init()                                   # 初始化 pygame
-font = pygame.font.SysFont(None,60)             # None:使用系統預字型
-screen = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))    
+font  = pygame.font.SysFont(None,60)            # None:使用系統預字型
+font2 = pygame.font.SysFont(None,30)            # None:使用系統預字型
+screen = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT+40))    
 pygame.display.set_caption("太鼓達人")          # 設定視窗標題
+screen.fill(BACKGROUNDCOLOR) 
+image = pygame.image.load("logo_taiko.png")     # 載入圖片
+screen.blit(image,(0,0))                        # 繪製圖片
+drawText('Press a key to start.', font, screen, 400,600)
+pygame.display.update()
 
-# 顯示起始畫面，告知玩家按下任意鍵開始遊戲
-screen.fill(BACKGROUNDCOLOR)                    # 顯示畫布為白色
-drawText('Taiko', font, screen, (WINDOWWIDTH / 3), (WINDOWHEIGHT / 3))
-drawText('Press a key to start.', font, screen, (WINDOWWIDTH / 3) - 30, (WINDOWHEIGHT / 3) + 50)
-pygame.display.update()                         # 顯示畫布為白色
 waitForPressKey()                               # 等待使用者按鍵
 
 background = pygame.Surface(screen.get_size())  # 建立畫布
@@ -58,6 +59,11 @@ for i in range(8):
     image = pygame.image.load("drum.png")                           # 載入背景圖片
     drum_image = pygame.transform.scale(image, (50,50))             # 重新設定鼓的大小
     drums.append(drum)
+
+good = pygame.Rect(335,190,150,50)                               # 存放 Rect 物件，記錄鼓的位置及大小    
+image = pygame.image.load("good.png")                           # 載入背景圖片
+good_image = pygame.transform.scale(image, (100,100))             # 重新設定鼓的大小    
+
         
 dx = 8                                          # 鼓移動的間隔
 score = 0                                       # 得分
@@ -81,6 +87,7 @@ while (endTime-startTime <= 30):                # 設定遊戲時間
         keys = pygame.key.get_pressed()                     # 檢查按鍵被按        
         if(drums[i].left <= 400 and keys[pygame.K_SPACE]):  # 空白鍵被按
             score += 1   
+            screen.blit(good_image, good) 
         screen.blit(drum_image, drums[i])                   # 繪製圖片
     
     msgstr1 = str(score)                            # 分數
@@ -90,21 +97,34 @@ while (endTime-startTime <= 30):                # 設定遊戲時間
     endTime=time.time()
 
 # 遊戲結束，停止播放背景音樂，顯示分數
+pygame.mixer.music.stop()
+gameOverSound = pygame.mixer.Sound('gameover.wav')
+gameOverSound.play()
+
 screen = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT+40)) 
 screen.fill(BACKGROUNDCOLOR) 
 image = pygame.image.load("score_Basemap.png")  # 載入圖片
 background.blit(image,(0,0))                    # 繪製圖片
 screen.blit(background,(0,0))                   # 重繪視窗
 
-msgstr1 = "YOUR SCORE : " + str(score)          # 分數
+
+if score >= 200 and score <300:
+    level = "Good!"            # 分數:200~299 Good!
+elif score >= 300:
+    level = "Excellent!"       # 分數>300 Excellent!
+else:
+    level = "OK!"              # 分數<199 Good!
+
+msgstr1 = "YOUR SCORE : " + str(score)  
 msg1 = font.render(msgstr1,True,(255,0,0))      # 第1個參數是顯示的文字；第2個參數:True比較平滑；第3個參數是字體的颜色。
-screen.blit(msg1,(600,210))                     # 顯示分數
+screen.blit(msg1,(550,200))                     # 顯示分數
+msg2 = font.render(level,True,(0,128,128))
+screen.blit(msg2,(550,250)) 
+
 pygame.display.update()                         # 更新視窗
 
-pygame.mixer.music.stop()
-gameOverSound = pygame.mixer.Sound('gameover.wav')
-gameOverSound.play()
-drawText('GAME OVER.                         Press ESC to exit.', font, screen, 240, 600)
+drawText('GAME OVER', font, screen, 480, 600)
+drawText('Press ESC to exit.', font2, screen, 1020, 620)
 pygame.display.update()
 
 # 按下 ESC 鍵離開遊戲
