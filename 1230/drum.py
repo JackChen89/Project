@@ -63,8 +63,8 @@ while Running:
     background.blit(image,(0,0))                    # 繪製圖片
 
     drums = []
-    for i in range(8):
-        drum = pygame.Rect(1000+i*100+random.randint(0,30),220,50,50)   # 存放 Rect 物件，記錄鼓的位置及大小
+    for i in range(8):                                                  # 啟始8個鼓隨機出現
+        drum = pygame.Rect(1200+i*100+random.randint(0,30),220,50,50)   # 存放 Rect 物件，記錄鼓的位置及大小
                                                                         # 利用 random.randint 產生整數亂數
                                                                         # 改變鼓出現的時間
         image = pygame.image.load("drum.png")                           # 載入背景圖片
@@ -85,16 +85,18 @@ while Running:
  
     while (endTime-startTime <= 30):                # 設定遊戲時間
         clock.tick(30)                              # 設定while迴圈每秒執行30次
+        
         for event in pygame.event.get():
+            
             if event.type == QUIT:                  # 關閉程式視窗
                 pygame.quit()
         
         screen.blit(background,(0,0))               # 重繪視窗
        
-        for i in range(8):
+        for i in range(8):                                      # 依序移動8個鼓
             drums[i].left -= dx                                 # 改變水平位置        
             if(drums[i].left <= 350 ):                          # 到達左邊界        
-                drums[i].left = 1000+i*100+random.randint(0,30)    
+                drums[i].left = 1200+random.randint(0,30)    
             
             keys = pygame.key.get_pressed()                     # 檢查按鍵被按        
             if(drums[i].left <= 400 and keys[pygame.K_SPACE]):  # 空白鍵被按
