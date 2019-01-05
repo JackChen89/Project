@@ -188,8 +188,8 @@ while Running:
    
     # 遊戲結束，停止播放背景音樂，顯示分數
     pygame.mixer.music.stop()
-    gameOverSound = pygame.mixer.Sound('C:\\Users\\USER\\Desktop\\Jack\\107-1course\\PBC\\Project\\final\\gameover.mp3')
-    gameOverSound.play()
+    mixer.music.load('C:\\Users\\USER\\Desktop\\Jack\\107-1course\\PBC\\Project\\final\\gameover.mp3')
+    mixer.music.play()
     print("!!!!!It's the data of",songstr,"!!!!!")
     print("Red:",new_drums1)
     print("Blue:",new_drums2)
@@ -224,7 +224,7 @@ while Running:
     # 按下y鍵再玩一次，n鍵離開。
     waitForYN()
         
-gameOverSound.stop()
+mixer.music.stop()
 pygame.quit()
 
 
