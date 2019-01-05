@@ -120,7 +120,7 @@ while Running:
     maxcombo = 0 #最大combo
 
  
-    while (endTime-startTime <= 10):                # 設定遊戲時間
+    while (endTime-startTime <= 60):                # 設定遊戲時間
         clock.tick(30)                              # 設定while迴圈每秒執行30次
         timing += 1 
         for event in pygame.event.get():
