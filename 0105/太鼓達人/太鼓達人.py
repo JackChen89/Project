@@ -38,7 +38,7 @@ def drawText(text, font, surface, x, y):        # 繪製文字到視窗中
     surface.blit(textobj,textrect)
 
 mixer.init()                                    # 建立 Soumd 物件
-mixer.music.load('C:\\Users\\ASUS\\Documents\\GitHub\\Project\\0105\\太鼓達人\\drum.mp3')             # 設定背景音樂
+mixer.music.load('C:\Users\user\Desktop\\drum.mp3')             # 設定背景音樂
 mixer.music.play()
 
 pygame.init()                                   # 初始化 pygame
@@ -47,7 +47,7 @@ font2 = pygame.font.SysFont(None,30)            # None:使用系統預字型
 screen = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT+40))    
 pygame.display.set_caption("太鼓達人")          # 設定視窗標題
 screen.fill(BACKGROUNDCOLOR) 
-image = pygame.image.load('C:\\Users\\ASUS\\Documents\\GitHub\\Project\\0105\\太鼓達人\\logo_taiko.png')     # 載入圖片
+image = pygame.image.load('C:\Users\user\Desktop\logo_taiko.png')     # 載入圖片
 screen.blit(image,(0,0))                        # 繪製圖片
 drawText('Press a key to start.', font, screen, 400,600)
 pygame.display.update()
@@ -107,12 +107,12 @@ while Running:
     song = song.lower()
     l = len(song)
     songstr = song[0:l-1]                      #字串處理(因textbox多一個\n，並變成小寫)
-    mixer.music.load('C:\\Users\\ASUS\\Documents\\GitHub\\Project\\0105\\太鼓達人\\music\\%s.mp3'%songstr) # 載入背景音樂
+    mixer.music.load('C:\Users\user\Desktop\\music\%s.mp3'%songstr) # 載入背景音樂
     mixer.music.play()
     
     background = pygame.Surface(screen.get_size())  # 建立畫布
     background.fill(BACKGROUNDCOLOR)                # 顯示畫布為白色
-    image = pygame.image.load('C:\\Users\\ASUS\\Documents\\GitHub\\Project\\0105\\太鼓達人\\drum_Basemap.png')   # 載入圖片
+    image = pygame.image.load('C:\Users\user\Desktop\drum_Basemap.png')   # 載入圖片
     background.blit(image,(0,0))                    # 繪製圖片
                                 
     """以下為目前歌曲的鼓(已對過節奏)，若有要增減或修改從此處"""
@@ -133,18 +133,18 @@ while Running:
     elif songstr == "done for me":
       new_drums1 = [3634, 3834, 3962, 4282, 4474, 4682, 4810, 5002, 5122, 5258, 5386, 5706, 5898, 6026, 6226, 6426, 6554, 6666, 6730, 6938, 7066, 7266, 7458, 7586, 7778, 7978, 8290, 8426, 8690, 8810, 9010, 9146, 9330, 9602, 9722, 9978, 10314, 10426, 10554, 10898, 11090, 11218, 11346, 11474, 11602, 11730, 12050, 12250, 12362, 12434, 12626, 12818, 12954, 13146, 13266, 13402, 13530, 13794, 14042, 14170, 14298, 14362]
       new_drums2 =[3770, 4026, 4146, 4346, 4538, 4938, 5066, 5330, 5450, 5506, 5578, 5834, 6090, 6362, 6602, 6874, 7130, 7402, 7658, 7914, 8098, 8154, 8354, 8490, 8626, 8746, 8946, 9202, 9466, 9666, 9858, 10050, 10178, 10242, 10498, 10626, 10690, 10762, 11018, 11282, 11546, 11810, 11938, 12114, 12306, 12562, 12746, 12882, 13082, 13338, 13602, 13730, 13922, 14106]
-    image = pygame.image.load("C:\\Users\\ASUS\\Documents\\GitHub\\Project\\0105\\太鼓達人\\drum1.png")   # 載入背景圖片
+    image = pygame.image.load("C:\Users\user\Desktop\drum1.png")   # 載入背景圖片
     drumr_image = pygame.transform.scale(image, (50,50))             # 重新設定鼓的大小(紅)
 
-    image = pygame.image.load("C:\\Users\\ASUS\\Documents\\GitHub\\Project\\0105\\太鼓達人\\drum2.png")   # 載入背景圖片
+    image = pygame.image.load("C:\Users\user\Desktop\drum2.png")   # 載入背景圖片
     drumb_image = pygame.transform.scale(image, (50,50))             # 重新設定鼓的大小(藍)
 
     good = pygame.Rect(335,190,100,100)                                  # 存放 Rect 物件，記錄good的位置及大小    
-    image = pygame.image.load("C:\\Users\\ASUS\\Documents\\GitHub\\Project\\0105\\太鼓達人\\good.png")    # 載入背景圖片
+    image = pygame.image.load("C:\Users\user\Desktop\good.png")    # 載入背景圖片
     good_image = pygame.transform.scale(image, (100,100))               # 重新設定good的大小  
     
     bad = pygame.Rect(360,190,100,100)                                  # 存放 Rect 物件，記錄bad的位置及大小    
-    image = pygame.image.load("C:\\Users\\ASUS\\Documents\\GitHub\\Project\\0105\\太鼓達人\\bad.png")     # 載入背景圖片
+    image = pygame.image.load("C:\Users\user\Desktop\bad.png")     # 載入背景圖片
     bad_image = pygame.transform.scale(image, (50,30))                  # 重新設定bad的大小    
     # print(drums)
       
@@ -228,13 +228,13 @@ while Running:
    
     # 遊戲結束，停止播放背景音樂，顯示分數
     pygame.mixer.music.stop()
-    mixer.music.load('C:\\Users\\ASUS\\Documents\\GitHub\\Project\\0105\\太鼓達人\\gameover.mp3')
+    mixer.music.load('C:\Users\user\Desktop\gameover.mp3')
     mixer.music.play()
     # print(new_drums1,new_drums2)
 
     screen = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT+40)) 
     screen.fill(BACKGROUNDCOLOR) 
-    image = pygame.image.load("C:\\Users\\ASUS\\Documents\\GitHub\\Project\\0105\\太鼓達人\\score_Basemap.png")  # 載入圖片
+    image = pygame.image.load("C:\Users\user\Desktop\score_Basemap.png")  # 載入圖片
     background.blit(image,(0,0))                    # 繪製圖片
     screen.blit(background,(0,0))                   # 重繪視窗
     
